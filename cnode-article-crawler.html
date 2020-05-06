@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <p>点击按钮，爬取 cnode 中文社区的首页文章</p>
+    <input id="button" type="button" value="爬一下" />
+    <div id="text"></div>
+    <script>
+        window.onload = function() {
+            var button = document.getElementById('button')
+            var div = document.getElementById('text')
+            var xhr = new XMLHttpRequest
+            xhr.onload = function() {
+                div.textContent = xhr.responseText
+            }
+            xhr.open('GET','http://localhost:3000/crawler')
+            xhr.send()
+        }
+    </script>
+</body>
+</html>
