@@ -1,0 +1,24 @@
+{
+  "name": "learn-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lalalazero/learn-nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lalalazero/learn-nodejs/issues"
+  },
+  "homepage": "https://github.com/lalalazero/learn-nodejs#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
