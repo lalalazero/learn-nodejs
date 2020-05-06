@@ -1,25 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
 </head>
+
 <body>
     <p>点击按钮，爬取 cnode 中文社区的首页文章</p>
     <input id="button" type="button" value="爬一下" />
     <div id="text"></div>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             var button = document.getElementById('button')
-            var div = document.getElementById('text')
-            var xhr = new XMLHttpRequest
-            xhr.onload = function() {
-                div.textContent = xhr.responseText
-            }
-            xhr.open('GET','http://localhost:3000/crawler')
-            xhr.send()
+            button.addEventListener('click', function () {
+                console.log('click')
+                var div = document.getElementById('text')
+                var xhr = new XMLHttpRequest
+                xhr.onload = function () {
+                    var resp = JSON.parse(xhr.responseText)
+                    var frag = document.createDocumentFragment()
+                    resp.map(item => {
+                        var li = document.createElement('li')
+                        var p = document.createElement('p')
+                        p.innerHTML = '<a href="' + item.href + '">' +
+                            '<span>' + item.title + '</span>' + '<a/>'
+                        li.appendChild(p)
+                        frag.appendChild(li)
+                    })
+
+                    var ul = document.createElement('ul')
+                    ul.appendChild(frag)
+                    div.appendChild(ul)
+
+                }
+                xhr.open('GET', 'http://localhost:3000/crawler')
+                xhr.send()
+            })
+
         }
     </script>
 </body>
+
 </html>
