@@ -1,6 +1,10 @@
 var express = require('express')
-
 var app = express()
+var multer = require('multer') // for parsing multipart/form-data
+var upload = multer({ dest: 'uploads/' })
+
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 app.get('/', function(req, res) {
     if (req.query.user) {
@@ -9,6 +13,13 @@ app.get('/', function(req, res) {
         return
     }
     res.send('Hello Express')
+})
+
+app.post('/profile', upload.none(), function (req, res, next) {
+  console.log(req.query)
+  console.log(req.body)
+  res.setHeader('Access-Control-Allow-Origin','*')
+  res.json(req.body)
 })
 
 
