@@ -31,4 +31,10 @@ describe('test/fibonacci.test.js', function() {
             fibonacci('string')
         }).should.throw('n should be a Number')
     })
+
+    it('fibonacci should throw error when n is NaN', function() {
+        (function() {
+            fibonacci(NaN)
+        }).should.throw('n should be a Number')
+    })
 })

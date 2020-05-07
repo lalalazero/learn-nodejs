@@ -1,5 +1,5 @@
 var fibonacci = function(n) {
-    if (typeof n !== 'number') {
+    if (typeof n !== 'number' || isNaN(n)) {
         throw new Error('n should be a Number')
     }
     if (n < 0) {
